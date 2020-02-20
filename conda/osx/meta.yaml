@@ -1,0 +1,25 @@
+
+package:
+    name: libint
+    version: 2.3.1
+source:
+    fn: libint-2.3.1.tgz
+    url: https://github.com/evaleev/libint/releases/download/v2.3.1/libint-2.3.1.tgz
+build:
+    run_exports:
+        - libint
+test:
+    commands:
+        - test -f $PREFIX/lib/libint2$SHLIB_EXT
+        - otool -L $PREFIX/lib/libint2.dylib
+        - conda inspect linkages libint
+about:
+    home: https://github.com/evaleev/libint
+    license: LGPL-3.0+
+    license_family: LGPL
+    license_file: LICENSE
+    license_url: https://opensource.org/licenses/LGPL-3.0+
+    summary: two-body molecular integrals over Gaussian functions library
+extra:
+    copy_test_source_files: true
+    final: true
