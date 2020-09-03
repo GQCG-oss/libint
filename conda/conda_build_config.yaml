@@ -41,3 +41,5 @@ numpy:
   - 1.18.1
 openmp:
   - 8.0.1
+boost_cpp:
+  - 1.69.0
