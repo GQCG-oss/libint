@@ -37,9 +37,17 @@ jobs:
       run: |
         conda install -c conda-forge cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
         conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
-    - name: Build, test and install
+    - name: Build, test and install (Linux)
+      if: matrix.os == 'ubuntu-latest'
       run: |
         ./autogen.sh
         mkdir build && cd build
-        ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXX=/usr/bin/c++ CXXFLAGS="-O2 -std=c++11" CPPFLAGS="-I$HOME/miniconda/include/ -L$HOME/miniconda/lib -lboost"
+        ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXX=g++ CC=gcc CXXFLAGS="-O2 -std=c++11" CPPFLAGS="-I$HOME/miniconda/include/ -L$HOME/miniconda/lib -lboost"
+        make -j2 VERBOSE=1 && make check && make install
+    - name: Build, test and install (MacOS)      
+      if: matrix.os == 'macos-latest'
+      run: |
+        ./autogen.sh
+        mkdir build && cd build
+        ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXX=clang++ CC=clang CXXFLAGS="-O2 -std=c++11" CPPFLAGS="-I$HOME/miniconda/include/ -L$HOME/miniconda/lib -lboost"
         make -j2 VERBOSE=1 && make check && make install
