@@ -9,8 +9,9 @@ if [ `uname` == Darwin ]; then
         --enable-static=no \
         CC=${CLANG} \
         CXX=${CLANGXX} \
-        CFLAGS="${CFLAGS} ${OPTS}"
-        CXXFLAGS="${CXXFLAGS} ${OPTS}"
+        CFLAGS="${CFLAGS} ${OPTS}" \ 
+        CXXFLAGS="${CXXFLAGS} ${OPTS}" \
+        CPPFLAGS="-I${PREFIX}/include"
 fi
 if [ `uname` == Linux ]; then
     ../configure \ 
@@ -19,8 +20,9 @@ if [ `uname` == Linux ]; then
         --enable-static=no \
         CC=${GCC} \
         CXX=${GXX} \
-        CFLAGS="${CFLAGS} ${OPTS}"
-        CXXFLAGS="${CXXFLAGS} ${OPTS}"
+        CFLAGS="${CFLAGS} ${OPTS}" \ 
+        CXXFLAGS="${CXXFLAGS} ${OPTS}" \
+        CPPFLAGS="-I${PREFIX}/include"
 fi
 
 make -j${CPU_COUNT} VERBOSE=1 && make check && make install
