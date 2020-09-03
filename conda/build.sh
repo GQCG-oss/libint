@@ -25,4 +25,6 @@ if [ `uname` == Linux ]; then
         CXXFLAGS="${CXXFLAGS} ${OPTS}"
 fi
 
+echo "starting compilation"
+
 make -j${CPU_COUNT} VERBOSE=1 && make install
