@@ -7,20 +7,22 @@ if [ `uname` == Darwin ]; then
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
+        --with-incdirs=-I${PREFIX}/include \
         CC=${CLANG} \
         CXX=${CLANGXX} \
         CFLAGS="${CFLAGS} ${OPTS}" \ 
-        CXXFLAGS="${CXXFLAGS} ${OPTS} -I${PREFIX}/include"
+        CXXFLAGS="${CXXFLAGS} ${OPTS}"
 fi
 if [ `uname` == Linux ]; then
     ../configure \ 
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
+        --with-incdirs=-I${PREFIX}/include \
         CC=${GCC} \
         CXX=${GXX} \
         CFLAGS="${CFLAGS} ${OPTS}" \ 
-        CXXFLAGS="${CXXFLAGS} ${OPTS} -I${PREFIX}/include"
+        CXXFLAGS="${CXXFLAGS} ${OPTS}"
 fi
 
 make -j${CPU_COUNT} VERBOSE=1 && make install

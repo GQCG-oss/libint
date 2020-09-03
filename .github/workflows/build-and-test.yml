@@ -52,6 +52,6 @@ jobs:
       run: |
         ./autogen.sh
         mkdir build && cd build
-        ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no CXX=clang++ CC=clang CXXFLAGS="-O2 -std=c++11 -I$HOME/miniconda/include"
+        ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no --with-incdirs=-I$HOME/miniconda/include CXX=clang++ CC=clang CXXFLAGS="-O2 -std=c++11"
         make -j2 VERBOSE=1
         make install
