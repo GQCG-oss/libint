@@ -44,11 +44,15 @@ jobs:
         ./autogen.sh
         mkdir build && cd build
         ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no CXX=g++ CC=gcc CXXFLAGS="-O2 -std=c++11 -I$HOME/miniconda/include"
-        make -j2 VERBOSE=1 && make check && make install
+        make -j2 VERBOSE=1 
+        make check
+        make install
     - name: Build, test and install (MacOS)      
       if: matrix.os == 'macos-latest'
       run: |
         ./autogen.sh
         mkdir build && cd build
         ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no CXX=clang++ CC=clang CXXFLAGS="-O2 -std=c++11 -I$HOME/miniconda/include"
-        make -j2 VERBOSE=1 && make check && make install
+        make -j2 VERBOSE=1
+        make check
+        make install

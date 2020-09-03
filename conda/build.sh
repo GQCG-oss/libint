@@ -9,7 +9,7 @@ if [ `uname` == Darwin ]; then
         --enable-static=no \
         CC=${CLANG} \
         CXX=${CLANGXX} \
-        CFLAGS="${CFLAGS} ${OPTS} -I${PREFIX}/include" \ 
+        CFLAGS="${CFLAGS} ${OPTS}" \ 
         CXXFLAGS="${CXXFLAGS} ${OPTS} -I${PREFIX}/include"
 fi
 if [ `uname` == Linux ]; then
@@ -19,7 +19,7 @@ if [ `uname` == Linux ]; then
         --enable-static=no \
         CC=${GCC} \
         CXX=${GXX} \
-        CFLAGS="${CFLAGS} ${OPTS} -I${PREFIX}/include" \ 
+        CFLAGS="${CFLAGS} ${OPTS}" \ 
         CXXFLAGS="${CXXFLAGS} ${OPTS} -I${PREFIX}/include"
 fi
 
