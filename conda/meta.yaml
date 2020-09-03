@@ -9,6 +9,7 @@ source:
     git_tag: v2.3.1/conda
 requirements:
     build:
+      - automake {{ automake }}
       - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
