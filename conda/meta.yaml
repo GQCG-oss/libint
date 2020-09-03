@@ -12,7 +12,7 @@ requirements:
       - libtool
       - automake
       - autoconf
-      - binutils 
+      - binutils
       - m4
       - icu
       - ncurses
@@ -24,7 +24,6 @@ requirements:
       - eigen {{ eigen }}
       - git
       - gmp {{ gmp }}
-      - make
       - mkl-static {{ mkl_static }}
       - mkl-include {{ mkl_include }}
     host:
