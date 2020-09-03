@@ -39,7 +39,7 @@ jobs:
         conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
     - name: Build, test and install
       run: |
-        ./autogen
+        ./autogen.sh
         mkdir build && cd build
         ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXXFLAGS="-O2 -std=c++11"
         make -j2 VERBOSE=1 && make check && make install
