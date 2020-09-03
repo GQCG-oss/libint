@@ -27,4 +27,5 @@ fi
 
 echo "starting compilation"
 
-make -j${CPU_COUNT} VERBOSE=1 && make install
+make -j ${CPU_COUNT}
+make install
