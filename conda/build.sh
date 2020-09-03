@@ -8,6 +8,9 @@ if [ `uname` == Darwin ]; then
         --enable-shared=yes \ 
         --enable-static=no \
         --with-incdirs=-I${PREFIX}/include \
+        --host=x86_64-apple-darwin19.6.0 \
+        --build=x86_64-apple-darwin19.6.0 \
+        --target=x86_64-apple-darwin19.6.0 \
         CC=${CLANG} \
         CXX=${CLANGXX} \
         CFLAGS="${CFLAGS} ${OPTS}" \ 
@@ -19,6 +22,9 @@ if [ `uname` == Linux ]; then
         --enable-shared=yes \ 
         --enable-static=no \
         --with-incdirs=-I${PREFIX}/include \
+        --host=x86_64-pc-linux-gnu \
+        --build=x86_64-pc-linux-gnu \
+        --target=x86_64-pc-linux-gnu \
         CC=${GCC} \
         CXX=${GXX} \
         CFLAGS="${CFLAGS} ${OPTS}" \ 
