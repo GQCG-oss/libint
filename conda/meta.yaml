@@ -15,6 +15,7 @@ requirements:
       - {{ compiler('cxx') }}
       - eigen {{ eigen }}
       - git
+      - gmp {{ gmp }}
       - make
       - mkl-static {{ mkl_static }}
       - mkl-include {{ mkl_include }}
@@ -23,6 +24,7 @@ requirements:
       - intel-openmp {{ intel_openmp }}
       - mkl {{ mkl }}
       - numpy {{ numpy }}
+      - gmp {{ gmp }}
       - llvm-openmp               # [osx]
       - openmp {{ openmp }}       # [linux]
       - python {{ python }}
@@ -30,6 +32,7 @@ requirements:
       - {{ pin_compatible('blas') }}
       - {{ pin_compatible('intel-openmp') }}
       - {{ pin_compatible('mkl') }}
+      - {{ pin_compatible('gmp') }}
       - numpy {{ numpy }}
       - python {{ python }}
       - llvm-openmp                    # [osx]

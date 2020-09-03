@@ -23,6 +23,8 @@ mkl:
   - 2019.0
 eigen:
   - 3.3.7
+gmp:
+  - 6.1.2
 mkl_static:
   - 2019.0
 mkl_include:
