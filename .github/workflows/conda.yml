@@ -1,4 +1,4 @@
-name: Libint gqcp package
+name: Libint conda package
 
 on:
   push:
