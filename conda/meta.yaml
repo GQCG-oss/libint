@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG-oss/libint.git
-    git_tag: v2.4.2/conda-test
+    git_tag: v2.4.2/conda_test
 requirements:
     build:
       - automake {{ automake }}
