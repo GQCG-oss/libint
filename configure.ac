@@ -16,9 +16,9 @@ AC_CONFIG_MACRO_DIR([lib/autoconf])
 dnl --- Compiling C++ only ---
 AC_LANG(C++)
 
-AC_CANONICAL_TARGET
-AC_DEFINE_UNQUOTED(LIBINT_HOST_ARCH, "$host")
-AC_DEFINE_UNQUOTED(LIBINT_TARGET_ARCH, "$target")
+dnl AC_CANONICAL_TARGET
+dnl AC_DEFINE_UNQUOTED(LIBINT_HOST_ARCH, "$host")
+dnl AC_DEFINE_UNQUOTED(LIBINT_TARGET_ARCH, "$target")
 
 define([default_prefix_dash],ifelse(libint_buildid, ,[],[-]))
 define([default_prefix],"/usr/local")
