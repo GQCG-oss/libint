@@ -2,5 +2,25 @@
 
 ./autogen.sh
 mkdir build && cd build
-../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXXFLAGS="-O2 -std=c++11" CPPFLAGS="-I${PREFIX}/include/ -L${PREFIX}/lib -lboost"
+if [ `uname` == Darwin ]; then
+    ../configure \ 
+        --prefix=${PREFIX} \
+        --enable-shared=yes \ 
+        --enable-static=no \
+        CC=${CLANG} \
+        CXX=${CLANGXX} \
+        CFLAGS="${CFLAGS} ${OPTS}"
+        CXXFLAGS="${CXXFLAGS} ${OPTS}"
+fi
+if [ `uname` == Linux ]; then
+    ../configure \ 
+        --prefix=${PREFIX} \
+        --enable-shared=yes \ 
+        --enable-static=no \
+        CC=${GCC} \
+        CXX=${GXX} \
+        CFLAGS="${CFLAGS} ${OPTS}"
+        CXXFLAGS="${CXXFLAGS} ${OPTS}"
+fi
+
 make -j${CPU_COUNT} VERBOSE=1 && make check && make install
