@@ -14,6 +14,9 @@ requirements:
       - autoconf
       - binutils 
       - m4
+      - icu
+      - ncurses
+      - wheel 
       - ccache
       - cmake {{ cmake }}
       - {{ compiler('c') }}
