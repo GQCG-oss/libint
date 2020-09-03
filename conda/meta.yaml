@@ -9,21 +9,16 @@ source:
     git_tag: v2.4.2/conda_test # for debugging purposes
 requirements:
     build:
-      - libtool
       - automake
       - autoconf
-      - binutils
-      - m4
-      - icu
-      - ncurses
-      - wheel 
-      - ccache
       - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - eigen {{ eigen }}
       - git
       - gmp {{ gmp }}
+      - libtool
+      - make
       - mkl-static {{ mkl_static }}
       - mkl-include {{ mkl_include }}
     host:
