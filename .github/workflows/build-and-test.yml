@@ -41,5 +41,5 @@ jobs:
       run: |
         ./autogen.sh
         mkdir build && cd build
-        ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXXFLAGS="-O2 -std=c++11 -I$HOME/miniconda/include/ -L$HOME/miniconda/lib -lboost"
+        ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no CXXFLAGS="-O2 -std=c++11" CPPFLAGS="-I$HOME/miniconda/include/ -L$HOME/miniconda/lib -lboost"
         make -j2 VERBOSE=1 && make check && make install
