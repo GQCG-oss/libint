@@ -21,6 +21,7 @@ requirements:
       - mkl-include {{ mkl_include }}
     host:
       - blas {{ blas }}
+      - boost-cpp {{ boost_cpp }}
       - intel-openmp {{ intel_openmp }}
       - mkl {{ mkl }}
       - numpy {{ numpy }}
@@ -33,6 +34,7 @@ requirements:
       - {{ pin_compatible('intel-openmp') }}
       - {{ pin_compatible('mkl') }}
       - {{ pin_compatible('gmp') }}
+      - boost-cpp {{ boost_cpp }}
       - numpy {{ numpy }}
       - python {{ python }}
       - llvm-openmp                    # [osx]
