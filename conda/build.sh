@@ -23,4 +23,4 @@ if [ `uname` == Linux ]; then
         CXXFLAGS="${CXXFLAGS} ${OPTS} -I${PREFIX}/include"
 fi
 
-make -j${CPU_COUNT} VERBOSE=1 && make check && make install
+make -j${CPU_COUNT} VERBOSE=1 && make install
