@@ -11,6 +11,10 @@ requirements:
     build:
       - libtool
       - automake
+      - autoconf
+      - binutils 
+      - m4
+      - ccache
       - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
