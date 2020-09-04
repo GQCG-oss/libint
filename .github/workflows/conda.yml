@@ -1,4 +1,4 @@
-name: Libint conda package (Python 3.6)
+name: Conda deployment
 
 on:
   push:
@@ -13,6 +13,7 @@ jobs:
       matrix:
         #os: [ubuntu-latest, macos-latest]
         os: [ubuntu-latest]
+        py: [3.6, 3.7, 3.8]
     steps:
       - uses: actions/setup-python@v2
         with:
@@ -40,5 +41,5 @@ jobs:
           conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload yes
-          conda-build -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [3.6]}"
+          conda-build -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
           anaconda logout
