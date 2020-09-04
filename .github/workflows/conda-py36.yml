@@ -1,4 +1,4 @@
-name: Libint conda package
+name: Libint conda package (Python 3.6)
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8' 
+          python-version: '3.6' 
       - uses: actions/checkout@v2
       - name: Download conda (Linux)
         if: matrix.os == 'ubuntu-latest'
@@ -40,5 +40,5 @@ jobs:
           conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload yes
-          conda-build -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }}
+          conda-build -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [3.6]}"
           anaconda logout
