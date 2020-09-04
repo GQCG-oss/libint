@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG-oss/libint.git
-    git_tag: v2.4.2/conda_test # for debugging purposes
+    git_tag: v2.4.2/conda
 requirements:
     build:
       - automake
@@ -44,11 +44,12 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libint2$SHLIB_EXT
+    - test -f ${PREFIX}/lib/libint2$SHLIB_EXT # [linux]
+    - test -f ${PREFIX}/lib/libint2.2$SHLIB_EXT # [osx]
     - test -f ${PREFIX}/include/libint2.h
     - test -f ${PREFIX}/include/libint2.hpp
     - ldd -v ${PREFIX}/lib/libint2$SHLIB_EXT    # [linux]
-    - otool -L ${PREFIX}/lib/libint2$SHLIB_EXT  # [osx]
+    - otool -L ${PREFIX}/lib/libint2.2$SHLIB_EXT  # [osx]
 about:
     home: https://github.com/GQCG-oss/libint
     license: BSD
