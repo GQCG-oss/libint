@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 set -x
+./autogen
+mkdir build && cd build
 if [ `uname` == Darwin ]; then
-    ./configure \ 
+    ../configure \ 
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
@@ -16,7 +18,7 @@ if [ `uname` == Darwin ]; then
         CXXFLAGS="${CXXFLAGS} ${OPTS}"
 fi
 if [ `uname` == Linux ]; then
-    ./configure \ 
+    ../configure \ 
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
