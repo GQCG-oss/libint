@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
-./autogen
+./autogen.sh
 mkdir build && cd build
 if [ `uname` == Darwin ]; then
     ../configure \ 
