@@ -11,6 +11,5 @@ if [ `uname` == Linux ]; then
 fi
 
 make -j ${CPU_COUNT}
-make check
 make install
 set +x
