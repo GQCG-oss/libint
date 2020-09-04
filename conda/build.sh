@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 set -x
-./autogen.sh
-mkdir build && cd build
 if [ `uname` == Darwin ]; then
-    ../configure \ 
+    ./configure \ 
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
@@ -18,7 +16,7 @@ if [ `uname` == Darwin ]; then
         CXXFLAGS="${CXXFLAGS} ${OPTS}"
 fi
 if [ `uname` == Linux ]; then
-    ../configure \ 
+    ./configure \ 
         --prefix=${PREFIX} \
         --enable-shared=yes \ 
         --enable-static=no \
@@ -33,5 +31,6 @@ if [ `uname` == Linux ]; then
 fi
 
 make -j ${CPU_COUNT}
+make check
 make install
 set +x
