@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -x
 ./autogen.sh
 mkdir build && cd build
 if [ `uname` == Darwin ]; then
@@ -27,11 +28,10 @@ if [ `uname` == Linux ]; then
         --target=x86_64-pc-linux-gnu \
         CC=${GCC} \
         CXX=${GXX} \
-        CFLAGS="${CFLAGS} ${OPTS}" \ 
-        CXXFLAGS="${CXXFLAGS} ${OPTS}"
+        CFLAGS="${CFLAGS} ${OPTS} -fopenmp" \ 
+        CXXFLAGS="${CXXFLAGS} ${OPTS} -fopenmp"
 fi
-
-echo "starting compilation"
 
 make -j ${CPU_COUNT}
 make install
+set +x
