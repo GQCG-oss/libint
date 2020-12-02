@@ -50,7 +50,6 @@ test:
     - test -f ${PREFIX}/include/libint2.h
     - test -f ${PREFIX}/include/libint2.hpp
     - ldd -v ${PREFIX}/lib/libint2$SHLIB_EXT    # [linux]
-    - otool -L ${PREFIX}/lib/libint2$SHLIB_EXT  # [osx]
 about:
     home: https://github.com/GQCG-oss/libint
     license: BSD
