@@ -1,24 +1,22 @@
-name: Conda deployment
+name: Conda CI
 
 on:
-  push:
-    branches:
-      - v2.4.2/conda
-  pull_request: # for debugging purposes
+  pull_request:
 
 jobs:
   build-and-deploy:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [ubuntu-latest, macos-latest]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
         py: [3.6, 3.7, 3.8]
     steps:
-      - uses: actions/setup-python@v2
+      - name: Checkout repo 
+        uses: actions/checkout@v2
+      - name: Python ${{ matrix.python-version }} setup
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.6' 
-      - uses: actions/checkout@v2
+          python-version: ${{ matrix.python-version }}
       - name: Download conda (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
@@ -28,7 +26,7 @@ jobs:
       - name: Install conda
         run: |     
           bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
-          echo "::add-path::$HOME/miniconda/bin"
+          echo "$HOME/miniconda/bin" >> $GITHUB_PATH
       - name: Download MacOSX 10.9 SDK as conda-build dependency
         if: matrix.os == 'macos-latest'
         run: |
@@ -40,6 +38,6 @@ jobs:
         run: |
           conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
           source activate packaging
-          conda config --set anaconda_upload yes
+          conda config --set anaconda_upload no
           conda-build -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
           anaconda logout
