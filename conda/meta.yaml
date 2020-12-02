@@ -11,24 +11,24 @@ requirements:
     build:
       - automake
       - autoconf
-      - cmake {{ cmake }}
+      - cmake
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - git
       - libtool
       - make
     host:
-      - blas {{ blas }}
-      - boost-cpp {{ boost_cpp }}
-      - eigen {{ eigen }}
-      - gmp {{ gmp }}
-      - intel-openmp {{ intel_openmp }}
-      - mkl-static {{ mkl_static }}
-      - mkl-include {{ mkl_include }}
-      - numpy {{ numpy }}
-      - gmp {{ gmp }}
+      - blas 
+      - boost-cpp 
+      - eigen 
+      - gmp 
+      - intel-openmp 
+      - mkl-static 
+      - mkl-include
+      - numpy
+      - gmp
       - llvm-openmp               # [osx]
-      - openmp {{ openmp }}       # [linux]
+      - openmp                    # [linux]
       - python
     run:
       - blas
