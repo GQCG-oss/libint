@@ -22,7 +22,7 @@ jobs:
     - name: Install conda   
       run: |  
         bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
-        echo "::add-path::$HOME/miniconda/bin"
+        echo "$HOME/miniconda/bin" >> $GITHUB_PATH
     - name: Install conda dependencies (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
