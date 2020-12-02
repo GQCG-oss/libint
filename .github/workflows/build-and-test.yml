@@ -1,0 +1,53 @@
+name: build and test
+
+on: pull_request
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8' 
+    - uses: actions/checkout@v2
+    - name: Download conda (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+    - name: Download conda (macOS)
+      if: matrix.os == 'macos-latest'
+      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O $HOME/miniconda.sh
+    - name: Install conda   
+      run: |  
+        bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
+        echo "$HOME/miniconda/bin" >> $GITHUB_PATH
+    - name: Install conda dependencies (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        conda install -c anaconda gmp libtool
+        conda install -c conda-forge openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
+        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
+    - name: Install conda dependencies (MacOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        conda install -c anaconda automake gmp libtool
+        conda install -c conda-forge cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
+        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
+    - name: Build, test and install (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        ./autogen.sh
+        mkdir build && cd build
+        ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no CXX=g++ CC=gcc CXXFLAGS="-O2 -std=c++11 -I$HOME/miniconda/include"
+        make -j2 VERBOSE=1 
+        make install
+    - name: Build, test and install (MacOS)      
+      if: matrix.os == 'macos-latest'
+      run: |
+        ./autogen.sh
+        mkdir build && cd build
+        ../configure --prefix=$HOME/miniconda --enable-shared=yes --enable-static=no --with-incdirs=-I$HOME/miniconda/include CXX=clang++ CC=clang CXXFLAGS="-O2 -std=c++11"
+        make -j2 VERBOSE=1
+        make install

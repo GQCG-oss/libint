@@ -1,0 +1,59 @@
+{% set name = "libint" %}
+{% set version = "2.4.2" %}
+
+package:
+    name: {{ name|lower }}
+    version: {{ version }}
+source:
+    git_url: https://github.com/GQCG-oss/libint.git
+    git_tag: v2.4.2/conda
+requirements:
+    build:
+      - automake
+      - autoconf
+      - cmake
+      - {{ compiler('c') }}
+      - {{ compiler('cxx') }}
+      - git
+      - libtool
+      - make
+    host:
+      - blas 
+      - boost-cpp 
+      - eigen 
+      - gmp 
+      - intel-openmp 
+      - mkl-static 
+      - mkl-include
+      - numpy
+      - gmp
+      - llvm-openmp               # [osx]
+      - openmp                    # [linux]
+      - python
+    run:
+      - blas
+      - boost-cpp
+      - eigen
+      - gmp
+      - intel-openmp
+      - mkl-static
+      - mkl-include
+      - numpy
+      - gmp
+      - llvm-openmp               # [osx]
+      - openmp                    # [linux]
+      - python
+
+test:
+  commands:
+    - ls ${PREFIX}/lib
+    - test -f ${PREFIX}/lib/libint2$SHLIB_EXT
+    - test -f ${PREFIX}/include/libint2.h
+    - test -f ${PREFIX}/include/libint2.hpp
+    - ldd -r -u "${PREFIX}/lib/libint2${SHLIB_EXT}" && return 0  # [linux]
+    - ldd -v "${PREFIX}/lib/libint2${SHLIB_EXT}"                 # [linux]
+about:
+    home: https://github.com/GQCG-oss/libint
+    license: BSD
+    license_file: LICENSE
+    summary: 'two-body molecular integrals over Gaussian functions library'
