@@ -3,7 +3,7 @@ name: Conda CI/CD
 on:
   push:
     branches:
-      - develop
+      - v2.4.2/conda
   pull_request:
 
 jobs:
