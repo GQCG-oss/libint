@@ -46,10 +46,12 @@ requirements:
 
 test:
   commands:
+    - ls ${PREFIX}/lib
     - test -f ${PREFIX}/lib/libint2$SHLIB_EXT
     - test -f ${PREFIX}/include/libint2.h
     - test -f ${PREFIX}/include/libint2.hpp
-    - ldd -v ${PREFIX}/lib/libint2$SHLIB_EXT    # [linux]
+    - ldd -r -u "${PREFIX}/lib/libint2${SHLIB_EXT}" && return 0  # [linux]
+    - ldd -v "${PREFIX}/lib/libint2${SHLIB_EXT}"                 # [linux]
 about:
     home: https://github.com/GQCG-oss/libint
     license: BSD
