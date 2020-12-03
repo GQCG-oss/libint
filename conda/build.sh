@@ -10,6 +10,7 @@ if [ `uname` == Linux ]; then
     ../configure --prefix=${PREFIX} --enable-shared=yes --enable-static=no --with-incdirs=-I${PREFIX}/include --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --target=x86_64-pc-linux-gnu CC=${GCC} CXX=${GXX} CFLAGS="${CFLAGS} ${OPTS} -fopenmp" CXXFLAGS="${CXXFLAGS} ${OPTS} -fopenmp"
 fi
 
-make -j ${CPU_COUNT} V=1
+make -j ${CPU_COUNT}
+make check
 make install
 set +x
